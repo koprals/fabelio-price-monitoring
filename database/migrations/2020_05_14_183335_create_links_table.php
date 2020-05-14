@@ -14,7 +14,29 @@ class CreateLinksTable extends Migration
     public function up()
     {
         Schema::create('links', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('url');
+            $table->string('main_filter_selector');   // this is the main filter selector used in the main filter() function
+            $table->unsignedInteger('website_id')->nullable();
+            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('item_schema_id')->nullable();
+            $table->foreign('website_id')
+                ->references('id')
+                ->on('websites')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+
+            $table->foreign('item_schema_id')
+                ->references('id')
+                ->on('item_schemas')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -14,7 +14,12 @@ class CreateItemSchemasTable extends Migration
     public function up()
     {
         Schema::create('item_schemas', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('title');
+            $table->boolean('is_full_url')->default(1);
+            $table->text('css_expression');
+            $table->string('full_content_selector');
+
             $table->timestamps();
         });
     }
