@@ -1,1 +1,1 @@
-# fabelio-price-monitoring
+# Price Monitoring Web App
