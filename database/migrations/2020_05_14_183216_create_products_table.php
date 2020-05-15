@@ -20,18 +20,6 @@ class CreateProductsTable extends Migration
             $table->bigInteger('price')->nullable();
             $table->string('image')->nullable();
             $table->string('source_link', 255)->nullable();
-            $table->unsignedInteger('category_id')->nullable();
-            $table->unsignedInteger('website_id')->nullable();
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
-            $table->foreign('website_id')
-                ->references('id')
-                ->on('websites')
-                ->onUpdate('cascade')
-                ->onDelete('set null');
             $table->timestamps();
         });
     }
